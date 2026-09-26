@@ -1,0 +1,18 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "CFTC COT Reports Output Schema",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "COT Dataset Results",
+      "description": "Complete weekly CFTC Commitment of Traders historical records and orderflow data",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "rankings": {
+      "type": "string",
+      "title": "Orderflow Rankings",
+      "description": "Smart Money weekly institutional buying and selling pressure rankings",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/ORDERFLOW_RANKINGS"
+    }
+  }
+}
