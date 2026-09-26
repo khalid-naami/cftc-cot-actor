@@ -1,0 +1,73 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "type": "object",
+    "properties": {
+      "date": {
+        "type": "string",
+        "description": "Weekly report date (DD/MM/YY)"
+      },
+      "iso_date": {
+        "type": "string",
+        "description": "ISO 8601 formatted date (YYYY-MM-DD)"
+      },
+      "asset": {
+        "type": "string",
+        "description": "Asset ticker (e.g. GOLD, BTC, EUR, S&P 500)"
+      },
+      "category": {
+        "type": "string",
+        "description": "Market sector: forex, crypto, metals, index, other"
+      },
+      "contract_code": {
+        "type": "string",
+        "description": "Official CFTC Contract Market Code"
+      },
+      "long_positions": {
+        "type": "integer",
+        "description": "Non-commercial (speculative/institutional) long positions"
+      },
+      "short_positions": {
+        "type": "integer",
+        "description": "Non-commercial short positions"
+      },
+      "change_long": {
+        "type": "integer",
+        "description": "Weekly change in non-commercial long positions"
+      },
+      "change_short": {
+        "type": "integer",
+        "description": "Weekly change in non-commercial short positions"
+      },
+      "net_position": {
+        "type": "integer",
+        "description": "Net institutional position (Long - Short)"
+      },
+      "report_id": {
+        "type": "string",
+        "description": "CFTC historical report identifier"
+      }
+    },
+    "required": ["date", "asset", "long_positions", "short_positions", "net_position"]
+  },
+  "views": {
+    "overview": {
+      "title": "COT Overview Table",
+      "transformation": {
+        "fields": [
+          "date",
+          "asset",
+          "category",
+          "net_position",
+          "change_long",
+          "change_short",
+          "long_positions",
+          "short_positions"
+        ]
+      },
+      "display": {
+        "component": "table"
+      }
+    }
+  }
+}
