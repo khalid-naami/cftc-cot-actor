@@ -10,5 +10,8 @@
   "dockerfilePath": "./Dockerfile",
   "environmentVariables": {
     "PYTHONUNBUFFERED": "1"
+  },
+  "storages": {
+    "dataset": "./dataset_schema.json"
   }
 }
