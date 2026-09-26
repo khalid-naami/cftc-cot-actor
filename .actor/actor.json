@@ -1,0 +1,14 @@
+{
+  "actorSpecification": 1,
+  "name": "cftc-cot-reports-analytics",
+  "title": "CFTC COT Reports & Orderflow Analytics (Forex, Crypto, Commodities, Indices)",
+  "description": "Scrapes and analyzes weekly CFTC Commitment of Traders (COT) reports from CFTC.gov. Extracts institutional long/short positions, net orderflow, and smart money rankings for 20+ assets.",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "python-start"
+  },
+  "dockerfilePath": "./Dockerfile",
+  "environmentVariables": {
+    "PYTHONUNBUFFERED": "1"
+  }
+}
