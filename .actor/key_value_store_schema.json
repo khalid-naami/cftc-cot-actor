@@ -1,0 +1,14 @@
+{
+  "actorKeyValueStoreSchemaVersion": 1,
+  "title": "CFTC COT Key-Value Store Schema",
+  "collections": {
+    "reports": {
+      "title": "Reports and Rankings",
+      "keyPrefix": "ORDERFLOW_"
+    },
+    "summaries": {
+      "title": "Run Output Summary",
+      "keyPrefix": "OUTPUT"
+    }
+  }
+}
