@@ -1,4 +1,4 @@
-FROM apify/actor-python:3.12-slim
+FROM apify/actor-python:3.12
 
 # Copy requirements and install dependencies
 COPY requirements.txt ./
