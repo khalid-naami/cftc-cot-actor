@@ -1,73 +1,91 @@
 {
-  "title": "CFTC COT Reports Scraper & Analytics Input",
-  "type": "object",
-  "schemaVersion": 1,
-  "properties": {
-    "assets": {
-      "title": "Assets to extract",
-      "type": "array",
-      "description": "Select the financial assets to fetch. Choose 'ALL' or specific assets (e.g. GOLD, BTC, EUR, OIL).",
-      "editor": "select",
-      "default": ["ALL"],
-      "items": {
-        "type": "string",
-        "enum": [
-          "ALL",
-          "EUR",
-          "JPY",
-          "GBP",
-          "AUD",
-          "CAD",
-          "CHF",
-          "NZD",
-          "USD",
-          "MXN",
-          "BRL",
-          "ZAR",
-          "BTC",
-          "ETH",
-          "GOLD",
-          "SILVER",
-          "COPPER",
-          "OIL",
-          "GAS",
-          "S&P 500",
-          "NASDAQ-100",
-          "DOW JONES"
-        ]
-      }
+    "title": "CFTC COT Reports Scraper & Analytics Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "assets": {
+            "title": "Assets to extract",
+            "type": "array",
+            "description": "Select the financial assets to fetch. Choose 'ALL' or specific assets (e.g. GOLD, BTC, EUR, OIL).",
+            "editor": "select",
+            "default": [
+                "ALL"
+            ],
+            "items": {
+                "type": "string",
+                "enum": [
+                    "ALL",
+                    "EUR",
+                    "JPY",
+                    "GBP",
+                    "AUD",
+                    "CAD",
+                    "CHF",
+                    "NZD",
+                    "USD",
+                    "MXN",
+                    "BRL",
+                    "ZAR",
+                    "BTC",
+                    "ETH",
+                    "GOLD",
+                    "SILVER",
+                    "COPPER",
+                    "OIL",
+                    "GAS",
+                    "S&P 500",
+                    "NASDAQ-100",
+                    "DOW JONES"
+                ]
+            }
+        },
+        "categories": {
+            "title": "Filter by Category",
+            "type": "array",
+            "description": "Filter assets by their market category.",
+            "editor": "select",
+            "default": [
+                "ALL"
+            ],
+            "items": {
+                "type": "string",
+                "enum": [
+                    "ALL",
+                    "forex",
+                    "crypto",
+                    "metals",
+                    "index",
+                    "other"
+                ]
+            }
+        },
+        "years": {
+            "title": "Years to download",
+            "type": "array",
+            "description": "List of report years to download from CFTC. Default is current years [2025, 2026].",
+            "editor": "json",
+            "default": [
+                2025,
+                2026
+            ]
+        },
+        "includeRankings": {
+            "title": "Include Smart Money Orderflow Rankings",
+            "type": "boolean",
+            "description": "When enabled, computes weekly orderflow injection rankings (Long & Short rankings).",
+            "default": true
+        },
+        "outputFormat": {
+            "title": "Output Format Style",
+            "type": "string",
+            "description": "Choose between flat records (ideal for tabular/CSV exports) or aggregated by asset.",
+            "enum": [
+                "flat_records",
+                "aggregated_by_asset"
+            ],
+            "default": "flat_records",
+            "editor": "select"
+        }
     },
-    "categories": {
-      "title": "Filter by Category",
-      "type": "array",
-      "description": "Filter assets by their market category.",
-      "editor": "select",
-      "default": ["ALL"],
-      "items": {
-        "type": "string",
-        "enum": ["ALL", "forex", "crypto", "metals", "index", "other"]
-      }
-    },
-    "years": {
-      "title": "Years to download",
-      "type": "array",
-      "description": "List of report years to download from CFTC. Default is current years [2025, 2026].",
-      "editor": "json",
-      "default": [2025, 2026]
-    },
-    "includeRankings": {
-      "title": "Include Smart Money Orderflow Rankings",
-      "type": "boolean",
-      "description": "When enabled, computes weekly orderflow injection rankings (Long & Short rankings).",
-      "default": true
-    },
-    "outputFormat": {
-      "title": "Output Format Style",
-      "type": "string",
-      "description": "Choose between flat records (ideal for tabular/CSV exports) or aggregated by asset.",
-      "enum": ["flat_records", "aggregated_by_asset"],
-      "default": "flat_records"
-    }
-  },
-  "required": []
+    "required": []
 }
