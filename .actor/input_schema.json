@@ -85,6 +85,15 @@
             ],
             "default": "flat_records",
             "editor": "select"
+        },
+        "proxyConfiguration": {
+            "title": "Proxy Configuration",
+            "type": "object",
+            "description": "Optional Apify Proxy settings. Only needed if direct CFTC.gov ZIP downloads are blocked and you want to route downloads through Apify Proxy (the Actor automatically falls back to the official CFTC Public Reporting Open Data API when CFTC.gov blocks datacenter IPs).",
+            "editor": "proxy",
+            "prefill": {
+                "useApifyProxy": false
+            }
         }
     },
     "required": []
