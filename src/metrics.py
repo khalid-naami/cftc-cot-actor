@@ -1,8 +1,17 @@
 """
 Smart Money Orderflow & Ranking Metrics Calculation.
 """
-from typing import List, Dict, Any, Tuple
+import math
+from typing import Any, Dict, Optional, Tuple
 import pandas as pd
+
+
+def _safe_float(val: Any) -> float:
+    try:
+        num = float(val)
+        return 0.0 if (math.isnan(num) or math.isinf(num)) else num
+    except (ValueError, TypeError):
+        return 0.0
 
 
 def calculate_orderflow_rankings(asset_dfs: Dict[str, pd.DataFrame]) -> Dict[str, Any]:
@@ -24,7 +33,7 @@ def calculate_orderflow_rankings(asset_dfs: Dict[str, pd.DataFrame]) -> Dict[str
         item = {
             "asset": asset_name,
             "rank": rank,
-            "orderflow_value": int(value),
+            "orderflow_value": int(round(value)),
             "date": latest_date,
             "direction": "LONG" if value >= 0 else "SHORT"
         }
@@ -44,26 +53,19 @@ def calculate_orderflow_rankings(asset_dfs: Dict[str, pd.DataFrame]) -> Dict[str
     }
 
 
-def _compute_asset_rank(df: pd.DataFrame) -> Tuple[int, float, str]:
+def _compute_asset_rank(df: pd.DataFrame) -> Tuple[Optional[int], float, str]:
     """
     Internal calculation for a single asset dataframe.
     """
     list_rank_long = []
     list_rank_short = []
-    last_change = 0
+    last_change = 0.0
     latest_date = str(df["Date"].iloc[0]) if "Date" in df.columns and not df.empty else ""
 
     for row in range(len(df)):
-        try:
-            change_long = float(df.iloc[row]["Change long"])
-        except (ValueError, TypeError):
-            change_long = 0.0
+        change_long = _safe_float(df.iloc[row]["Change long"])
+        change_short = _safe_float(df.iloc[row]["Change short"])
 
-        try:
-            change_short = float(df.iloc[row]["Change short"])
-        except (ValueError, TypeError):
-            change_short = 0.0
-        
         # Calculate gross orderflow injection
         total_long = change_long if change_long >= 0 else 0.0
         total_short = change_long if change_long < 0 else 0.0
@@ -96,4 +98,4 @@ def _compute_asset_rank(df: pd.DataFrame) -> Tuple[int, float, str]:
             if item[1] == 0:
                 return idx + 1, last_change, latest_date
 
-    return None, 0, latest_date
+    return None, 0.0, latest_date
