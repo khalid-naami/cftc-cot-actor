@@ -7,10 +7,11 @@
   "meta": {
     "templateId": "python-start"
   },
-  "dockerfilePath": "./Dockerfile",
+  "dockerfile": "../Dockerfile",
   "environmentVariables": {
     "PYTHONUNBUFFERED": "1"
   },
+  "input": "./input_schema.json",
   "output": "./output_schema.json",
   "storages": {
     "dataset": "./dataset_schema.json",
