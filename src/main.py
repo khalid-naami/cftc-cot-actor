@@ -79,8 +79,7 @@ async def main() -> None:
                         "rankings_included": False,
                     },
                 )
-                Actor.status_message = msg
-                Actor.exit_code = 1
+                await Actor.fail(status_message=msg)
                 return
 
             msg = f"No CFTC COT records extracted ({empty_reason or 'NO_MATCHING_RECORDS'}). Verify input filters and years."
@@ -98,7 +97,7 @@ async def main() -> None:
                     "rankings_included": False,
                 },
             )
-            Actor.status_message = msg
+            await Actor.fail(status_message=msg)
             return
 
         Actor.log.info(
